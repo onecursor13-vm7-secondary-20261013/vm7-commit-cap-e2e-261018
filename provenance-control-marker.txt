@@ -1,0 +1,1 @@
+VM7 controlled negative: the Owner-attributed unsigned commit is inside GitHub's returned 250-commit set and must be rejected by Mergify.
