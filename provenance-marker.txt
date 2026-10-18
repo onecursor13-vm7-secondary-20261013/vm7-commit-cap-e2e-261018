@@ -1,1 +1,0 @@
-VM7 controlled marker: this protected-branch change was authored by the external test account while the unsigned Git object claims the Owner identity.
