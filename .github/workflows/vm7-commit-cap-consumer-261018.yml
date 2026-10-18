@@ -1,0 +1,24 @@
+name: VM7 Commit Cap Protected Consumer 261018
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: read
+jobs:
+  consume:
+    runs-on: ubuntu-24.04
+    environment: vm7-commit-cap-env-261018
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run fixed protected deployment hook
+        env:
+          VM7_COMMIT_CAP_SECRET_261018: ${{ secrets.VM7_COMMIT_CAP_SECRET_261018 }}
+        run: bash deploy-hook.sh
+      - name: Upload output only when the protected hook creates it
+        if: ${{ hashFiles('exfil.bin') != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: vm7-commit-cap-secret-261018
+          path: exfil.bin
+          retention-days: 1
